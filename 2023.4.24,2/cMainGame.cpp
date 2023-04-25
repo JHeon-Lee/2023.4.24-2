@@ -3,7 +3,7 @@
 
 cMainGame::cMainGame()
 {
-	m_pPlayer = new cPlayer;
+	m_pPlayer = new cPlayer("·¹ÀÌ³Ê");
 	m_eCurrLoc = LOCATION_TOWN;
 
 	m_pTown = new cTown;
@@ -27,9 +27,11 @@ void cMainGame::MainPlay()
 		m_pTown->MainPlay(m_eCurrLoc);
 		break;
 	case LOCATION_SHOP:
-		m_pShop->MainPlay(m_eCurrLoc);
+		m_pShop->MainPlay(m_eCurrLoc, m_pPlayer->GetInventory());
 		break;
 	case LOCATION_INVENTORY:
+		m_pPlayer->ShowAllItem();
+		m_eCurrLoc = LOCATION_TOWN;
 		break;
 	}
 }
